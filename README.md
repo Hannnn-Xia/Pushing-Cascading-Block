@@ -1,5 +1,3 @@
-# CS3110-final-project
-
 
 # Installation
 - Step 0: Install the graphics and camlimages packages; see below for more details
