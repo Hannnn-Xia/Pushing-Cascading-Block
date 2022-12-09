@@ -1,0 +1,88 @@
+# CS3110-final-project
+
+
+# Installation
+- Step 0: Install the graphics and camlimages packages; see below for more details
+
+- Step 1: Download the zip file and upzip it;
+
+- Step 2: In the directory, run [make build] and then [make play] command;
+
+- Step 3: Press any key to start the game.
+
+- Step 4: Close the window to stop the game. 
+
+
+# Getting the GUI to Work
+## For Mac:
+NOTE: 
+You will need to install X11/XQuartz for Graphics support. 
+Install xquartz according to the 3110 Canvas page and delete/reinstall opam.
+If you installed ocaml with homebrew, it can be done by running
+
+$ brew install Caskroom/cask/xquartz
+$ brew reinstall ocaml --with-x11
+
+- Step 1: create a new switch for the game by running the command 
+
+    $ opam switch create <name> 4.07.1
+
+- Step 2: run
+
+    $ opam install graphics
+    $ opam update
+    $ opam upgrade
+    $ eval $(opam env)
+
+    NOTE: If the installation of graphics module is successful, then the
+    following commands should have you open a XQuartz window:
+
+    $ ocaml
+    $ #load "graphics.cma";;
+    $ Graphics.open_graph "";;
+
+- Step 3: run 
+
+    $ opam install -y utop ounit qcheck ocaml-lsp-server ocamlformat yojson ansiterminal csv bisect_ppx-ocamlbuild menhir user-setup
+    $ opam user-setup install
+
+- Step 4: run 
+    $ brew install libpng
+    $ opam install camlimages
+
+## For Windows:
+- Step 1: create a new switch for the game by running the command 
+
+    $ opam switch create <name> 4.07.1
+
+- Step 2: run
+
+    $ sudo apt install pkg-config
+    $ opam install graphics
+    $ opam update
+    $ opam upgrade
+    $ eval $(opam env)  
+
+- Step 3: install Xming available here: [Xming](https://sourceforge.net/projects/xming/)
+
+- Step 3b: check to make sure running the following code opens up a blank 
+    window (make sure Xming has a server running):
+
+    $ ocaml 
+    $ #load “graphics.cma”;;
+    $ Graphics.open_graph “localhost:0.0 ”;;
+
+- Step 4: run
+
+    $ sudo apt-get install libpng-dev   
+    $ opam install camlimages
+    
+- Step 5: run 
+
+    $ opam install -y utop ounit qcheck ocaml-lsp-server ocamlformat yojson ansiterminal csv bisect_ppx-ocamlbuild menhir user-setup  
+    $ opam user-setup install
+
+Note: you will need to change open_graph function to be 
+Graphics.open_graph ("localhost:0.0 " ^ (string_of_int map_w) ^ "x" ^ (string_of_int map_h)) 
+in the main.ml file inside the open_graph function. This is noted in a comment 
+right above the Mac implementation which is what it will be by default.
